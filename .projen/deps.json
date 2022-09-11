@@ -87,13 +87,12 @@
       "type": "build"
     },
     {
-      "name": "standard-version",
-      "version": "^9",
+      "name": "ts-jest",
+      "version": "^27",
       "type": "build"
     },
     {
-      "name": "ts-jest",
-      "version": "^27",
+      "name": "ts-node",
       "type": "build"
     },
     {

@@ -3,8 +3,6 @@
 /test-reports/
 junit.xml
 /coverage/
-/dist/changelog.md
-/dist/version.txt
 /.mergify.yml
 /test/
 /tsconfig.dev.json
@@ -21,3 +19,7 @@ dist
 tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
+!app/handler.zip
+streamlink/
+build/
+cdk.out

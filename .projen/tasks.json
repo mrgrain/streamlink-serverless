@@ -24,22 +24,21 @@
         }
       ]
     },
-    "bump": {
-      "name": "bump",
-      "description": "Bumps version based on latest git tag and generates a changelog entry",
-      "env": {
-        "OUTFILE": "package.json",
-        "CHANGELOG": "dist/changelog.md",
-        "BUMPFILE": "dist/version.txt",
-        "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
-      },
+    "build:app": {
+      "name": "build:app",
       "steps": [
         {
-          "builtin": "release/bump-version"
+          "exec": "cd streamlink && zip -FS ../app/handler.zip app.py"
         }
-      ],
-      "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
+      ]
+    },
+    "build:layer": {
+      "name": "build:layer",
+      "steps": [
+        {
+          "exec": "docker run -v ${PWD}/app:/output \"lambci/lambda:build-python3.8\" /bin/sh -c \"pip install --upgrade streamlink lxml -t python/lib/python3.8/site-packages/; zip -FSrq /output/layer.zip python\""
+        }
+      ]
     },
     "clobber": {
       "name": "clobber",
@@ -96,7 +95,7 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "node .projenrc.js"
+          "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
         }
       ]
     },
@@ -126,7 +125,15 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+        }
+      ]
+    },
+    "integ": {
+      "name": "integ",
+      "steps": [
+        {
+          "exec": "cdk -a \"npx ts-node test/integ.ts\" deploy"
         }
       ]
     },
@@ -172,29 +179,13 @@
     },
     "pre-compile": {
       "name": "pre-compile",
-      "description": "Prepare the project for compilation"
-    },
-    "release": {
-      "name": "release",
-      "description": "Prepare a release from \"main\" branch",
-      "env": {
-        "RELEASE": "true"
-      },
+      "description": "Prepare the project for compilation",
       "steps": [
         {
-          "exec": "rm -fr dist"
+          "spawn": "build:layer"
         },
         {
-          "spawn": "bump"
-        },
-        {
-          "spawn": "build"
-        },
-        {
-          "spawn": "unbump"
-        },
-        {
-          "exec": "git diff --ignore-space-at-eol --exit-code"
+          "spawn": "build:app"
         }
       ]
     },
@@ -225,22 +216,6 @@
       "steps": [
         {
           "exec": "jest --watch"
-        }
-      ]
-    },
-    "unbump": {
-      "name": "unbump",
-      "description": "Restores version to 0.0.0",
-      "env": {
-        "OUTFILE": "package.json",
-        "CHANGELOG": "dist/changelog.md",
-        "BUMPFILE": "dist/version.txt",
-        "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
-      },
-      "steps": [
-        {
-          "builtin": "release/reset-version"
         }
       ]
     },
