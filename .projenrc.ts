@@ -1,4 +1,4 @@
-import { awscdk, github } from 'projen';
+import { awscdk, github, JsonPatch } from 'projen';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -32,5 +32,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
 // Ignore python directories
 project.addPackageIgnore('streamlink/');
 project.addPackageIgnore('cdk.out');
+
+// Fix Docker on GitHub
+const buildWorkflow = project.tryFindObjectFile('.github/workflows/build.yml');
+buildWorkflow?.patch(JsonPatch.add('/jobs/build/container/options', '--group-add 121'));
 
 project.synth();
