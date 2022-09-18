@@ -2,6 +2,7 @@ import { join } from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { BundlingOutput, DockerImage } from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 
 export interface StreamlinkProps {
@@ -13,18 +14,18 @@ export class Streamlink extends Construct {
   public constructor(scope: Construct, id: string, _props: StreamlinkProps) {
     super(scope, id);
 
+    const runtime = Runtime.PYTHON_3_9;
     const streamlinkApp = join(__dirname, '..', 'streamlink');
 
     const layer = new lambda.LayerVersion(this, 'Layer', {
-      compatibleRuntimes: [lambda.Runtime.PYTHON_3_8],
+      compatibleRuntimes: [runtime],
       code: lambda.Code.fromAsset(streamlinkApp, {
         bundling: {
-          image: DockerImage.fromRegistry('lambci/lambda:build-python3.8'),
-          workingDirectory: '/var/tasks',
-          user: 'root',
+          image: DockerImage.fromBuild(streamlinkApp),
+          workingDirectory: '/build',
           command: [
             'bash', '-c',
-            'pip install --upgrade streamlink lxml -t python/lib/python3.8/site-packages/ && zip -FSrq /asset-output/layer.zip python',
+            `pip install --upgrade streamlink lxml -t python/lib/${runtime.name}/site-packages/ && zip -rq /asset-output/layer.zip python`,
           ],
           outputType: BundlingOutput.ARCHIVED,
         },
@@ -32,7 +33,7 @@ export class Streamlink extends Construct {
     });
 
     this.function = new lambda.Function(this, 'Default', {
-      runtime: lambda.Runtime.PYTHON_3_8,
+      runtime,
       handler: 'app.handler',
       code: lambda.Code.fromAsset(streamlinkApp),
       memorySize: 512,

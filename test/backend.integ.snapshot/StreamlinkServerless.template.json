@@ -7,10 +7,10 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6a6d74d97214aac3e7c109d9ab1f9f1b80a013839669fb8267a711d0d6ed9166.zip"
+     "S3Key": "035e810ff905ced17e3df984e4901e0ea28104de5ed63acec404d896718940fa.zip"
     },
     "CompatibleRuntimes": [
-     "python3.8"
+     "python3.9"
     ]
    }
   },
@@ -52,7 +52,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "ca9e5802b44a7c4be7cc19a951f28b332b8bf0553ba5d8ad927850ea9592c88c.zip"
+     "S3Key": "07e8a9443b39ee653cf089d87ce212d08ff77381692606a954d671a089aaa612.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -67,7 +67,7 @@
      }
     ],
     "MemorySize": 512,
-    "Runtime": "python3.8",
+    "Runtime": "python3.9",
     "Timeout": 5
    },
    "DependsOn": [

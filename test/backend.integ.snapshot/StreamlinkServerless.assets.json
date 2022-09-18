@@ -1,33 +1,33 @@
 {
   "version": "21.0.0",
   "files": {
-    "6a6d74d97214aac3e7c109d9ab1f9f1b80a013839669fb8267a711d0d6ed9166": {
+    "035e810ff905ced17e3df984e4901e0ea28104de5ed63acec404d896718940fa": {
       "source": {
-        "path": "asset.6a6d74d97214aac3e7c109d9ab1f9f1b80a013839669fb8267a711d0d6ed9166.zip",
+        "path": "asset.035e810ff905ced17e3df984e4901e0ea28104de5ed63acec404d896718940fa.zip",
         "packaging": "file"
       },
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "6a6d74d97214aac3e7c109d9ab1f9f1b80a013839669fb8267a711d0d6ed9166.zip",
+          "objectKey": "035e810ff905ced17e3df984e4901e0ea28104de5ed63acec404d896718940fa.zip",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
     },
-    "ca9e5802b44a7c4be7cc19a951f28b332b8bf0553ba5d8ad927850ea9592c88c": {
+    "07e8a9443b39ee653cf089d87ce212d08ff77381692606a954d671a089aaa612": {
       "source": {
-        "path": "asset.ca9e5802b44a7c4be7cc19a951f28b332b8bf0553ba5d8ad927850ea9592c88c",
+        "path": "asset.07e8a9443b39ee653cf089d87ce212d08ff77381692606a954d671a089aaa612",
         "packaging": "zip"
       },
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "ca9e5802b44a7c4be7cc19a951f28b332b8bf0553ba5d8ad927850ea9592c88c.zip",
+          "objectKey": "07e8a9443b39ee653cf089d87ce212d08ff77381692606a954d671a089aaa612.zip",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
     },
-    "a85676fd8bd2cb74121070be44614ecab190901336e3c5e726891b0a8a6d4fce": {
+    "40504c39bf20750f51be4f7b59c119ca900fe9762b4ee1030b1da814269aea8c": {
       "source": {
         "path": "StreamlinkServerless.template.json",
         "packaging": "file"
@@ -35,7 +35,7 @@
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "a85676fd8bd2cb74121070be44614ecab190901336e3c5e726891b0a8a6d4fce.json",
+          "objectKey": "40504c39bf20750f51be4f7b59c119ca900fe9762b4ee1030b1da814269aea8c.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
