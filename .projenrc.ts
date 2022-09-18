@@ -35,13 +35,9 @@ project.addPackageIgnore('build/');
 project.addPackageIgnore('cdk.out');
 
 // Python build
-const buildLayer = project.tasks.addTask('build:layer', {
-  exec: 'docker run -v ${PWD}/app:/output "lambci/lambda:build-python3.8" /bin/sh -c "pip install --upgrade streamlink lxml -t python/lib/python3.8/site-packages/; zip -FSrq /output/layer.zip python"',
-});
 const buildApp = project.tasks.addTask('build:app', {
   exec: 'cd streamlink && zip -FS ../app/handler.zip app.py',
 });
-project.preCompileTask.spawn(buildLayer);
 project.preCompileTask.spawn(buildApp);
 
 project.synth();

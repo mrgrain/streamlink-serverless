@@ -1,5 +1,6 @@
 import { join } from 'path';
 import * as cdk from 'aws-cdk-lib';
+import { BundlingOutput, DockerImage } from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 
@@ -14,7 +15,18 @@ export class Streamlink extends Construct {
 
     const layer = new lambda.LayerVersion(this, 'Layer', {
       compatibleRuntimes: [lambda.Runtime.PYTHON_3_8],
-      code: lambda.Code.fromAsset(join(__dirname, '..', 'app', 'layer.zip')),
+      code: lambda.Code.fromAsset(join(__dirname, '..', 'streamlink'), {
+        bundling: {
+          image: DockerImage.fromRegistry('lambci/lambda:build-python3.8'),
+          workingDirectory: '/var/tasks',
+          user: 'root',
+          command: [
+            'bash', '-c',
+            'pip install --upgrade streamlink lxml -t python/lib/python3.8/site-packages/ && zip -FSrq /asset-output/layer.zip python',
+          ],
+          outputType: BundlingOutput.ARCHIVED,
+        },
+      }),
     });
 
     this.function = new lambda.Function(this, 'Default', {

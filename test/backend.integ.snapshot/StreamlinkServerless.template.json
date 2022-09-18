@@ -7,7 +7,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "df4849ceac22c8fb4c7e88ca1b3eeffd06be69a1163b3195c75d24132e11eed5.zip"
+     "S3Key": "6a6d74d97214aac3e7c109d9ab1f9f1b80a013839669fb8267a711d0d6ed9166.zip"
     },
     "CompatibleRuntimes": [
      "python3.8"
