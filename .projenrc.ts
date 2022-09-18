@@ -1,6 +1,7 @@
-import { awscdk } from 'projen';
+import { awscdk, github } from 'projen';
 
 const project = new awscdk.AwsCdkConstructLibrary({
+  projenrcTs: true,
   author: 'Momo Kornher',
   authorAddress: 'mail@moritzkornher.de',
   cdkVersion: '2.1.0',
@@ -11,6 +12,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: 'streamlink-serverless',
   description: 'Streamlink as a Service',
   repositoryUrl: 'https://github.com/mrgrain/streamlink-serverless.git',
+  githubOptions: {
+    projenCredentials: github.GithubCredentials.fromApp(),
+  },
   devDeps: [
     'aws-cdk@^2.42.0',
     'aws-cdk-lib@^2.42.0',
@@ -19,7 +23,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   peerDependencyOptions: {
     pinnedDevDependency: false,
   },
-  projenrcTs: true,
   gitignore: [
     '.venv/',
     'cdk.out',
