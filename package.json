@@ -7,8 +7,6 @@
   },
   "scripts": {
     "build": "npx projen build",
-    "build:app": "npx projen build:app",
-    "build:layer": "npx projen build:layer",
     "clobber": "npx projen clobber",
     "compat": "npx projen compat",
     "compile": "npx projen compile",

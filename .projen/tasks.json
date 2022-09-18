@@ -24,22 +24,6 @@
         }
       ]
     },
-    "build:app": {
-      "name": "build:app",
-      "steps": [
-        {
-          "exec": "cd streamlink && zip -FS ../app/handler.zip app.py"
-        }
-      ]
-    },
-    "build:layer": {
-      "name": "build:layer",
-      "steps": [
-        {
-          "exec": "docker run -v ${PWD}/app:/output \"lambci/lambda:build-python3.8\" /bin/sh -c \"pip install --upgrade streamlink lxml -t python/lib/python3.8/site-packages/; zip -FSrq /output/layer.zip python\""
-        }
-      ]
-    },
     "clobber": {
       "name": "clobber",
       "description": "hard resets to HEAD of origin and cleans the local repo",
@@ -243,15 +227,7 @@
     },
     "pre-compile": {
       "name": "pre-compile",
-      "description": "Prepare the project for compilation",
-      "steps": [
-        {
-          "spawn": "build:layer"
-        },
-        {
-          "spawn": "build:app"
-        }
-      ]
+      "description": "Prepare the project for compilation"
     },
     "test": {
       "name": "test",

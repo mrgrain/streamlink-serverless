@@ -13,9 +13,11 @@ export class Streamlink extends Construct {
   public constructor(scope: Construct, id: string, _props: StreamlinkProps) {
     super(scope, id);
 
+    const streamlinkApp = join(__dirname, '..', 'streamlink');
+
     const layer = new lambda.LayerVersion(this, 'Layer', {
       compatibleRuntimes: [lambda.Runtime.PYTHON_3_8],
-      code: lambda.Code.fromAsset(join(__dirname, '..', 'streamlink'), {
+      code: lambda.Code.fromAsset(streamlinkApp, {
         bundling: {
           image: DockerImage.fromRegistry('lambci/lambda:build-python3.8'),
           workingDirectory: '/var/tasks',
@@ -32,7 +34,7 @@ export class Streamlink extends Construct {
     this.function = new lambda.Function(this, 'Default', {
       runtime: lambda.Runtime.PYTHON_3_8,
       handler: 'app.handler',
-      code: lambda.Code.fromAsset(join(__dirname, '..', 'app', 'handler.zip')),
+      code: lambda.Code.fromAsset(streamlinkApp),
       memorySize: 512,
       timeout: cdk.Duration.seconds(5),
       layers: [layer],

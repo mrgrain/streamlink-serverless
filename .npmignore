@@ -21,7 +21,5 @@ tsconfig.tsbuildinfo
 !.jsii
 test/.tmp
 test/backend.integ.snapshot
-!app/handler.zip
 streamlink/
-build/
 cdk.out
