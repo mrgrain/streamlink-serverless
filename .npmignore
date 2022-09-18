@@ -19,6 +19,8 @@ dist
 tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
+test/.tmp
+test/backend.integ.snapshot
 !app/handler.zip
 streamlink/
 build/

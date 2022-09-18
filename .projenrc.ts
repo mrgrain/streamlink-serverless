@@ -11,7 +11,14 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: 'streamlink-serverless',
   description: 'Streamlink as a Service',
   repositoryUrl: 'https://github.com/mrgrain/streamlink-serverless.git',
-  devDeps: [],
+  devDeps: [
+    'aws-cdk@^2.42.0',
+    'aws-cdk-lib@^2.42.0',
+    'constructs@^10.0.5',
+  ],
+  peerDependencyOptions: {
+    pinnedDevDependency: false,
+  },
   projenrcTs: true,
   gitignore: [
     '.venv/',
@@ -36,10 +43,5 @@ const buildApp = project.tasks.addTask('build:app', {
 });
 project.preCompileTask.spawn(buildLayer);
 project.preCompileTask.spawn(buildApp);
-
-// Integ helper
-project.addTask('integ', {
-  exec: 'cdk -a "npx ts-node test/integ.ts" deploy',
-});
 
 project.synth();

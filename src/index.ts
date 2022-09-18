@@ -7,6 +7,8 @@ export interface StreamlinkProps {
 }
 
 export class Streamlink extends Construct {
+  public readonly function: lambda.Function;
+
   public constructor(scope: Construct, id: string, _props: StreamlinkProps) {
     super(scope, id);
 
@@ -15,7 +17,7 @@ export class Streamlink extends Construct {
       code: lambda.Code.fromAsset(join(__dirname, '..', 'app', 'layer.zip')),
     });
 
-    new lambda.Function(this, 'Default', {
+    this.function = new lambda.Function(this, 'Default', {
       runtime: lambda.Runtime.PYTHON_3_8,
       handler: 'app.handler',
       code: lambda.Code.fromAsset(join(__dirname, '..', 'app', 'handler.zip')),

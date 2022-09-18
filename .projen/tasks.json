@@ -129,11 +129,75 @@
         }
       ]
     },
-    "integ": {
-      "name": "integ",
+    "integ:backend:assert": {
+      "name": "integ:backend:assert",
+      "description": "assert the snapshot of integration test 'backend'",
       "steps": [
         {
-          "exec": "cdk -a \"npx ts-node test/integ.ts\" deploy"
+          "exec": "[ -d \"test/backend.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'backend'. Run 'projen integ:backend:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/backend.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/backend.integ.snapshot/ test/.tmp/backend.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:backend:deploy": {
+      "name": "integ:backend:deploy",
+      "description": "deploy integration test 'backend' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/.tmp/backend.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/backend.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/backend.integ.snapshot"
+        },
+        {
+          "exec": "mv test/.tmp/backend.integ/deploy.cdk.out test/backend.integ.snapshot"
+        },
+        {
+          "spawn": "integ:backend:destroy"
+        }
+      ]
+    },
+    "integ:backend:destroy": {
+      "name": "integ:backend:destroy",
+      "description": "destroy integration test 'backend'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/backend.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:backend:snapshot": {
+      "name": "integ:backend:snapshot",
+      "description": "update snapshot for integration test \"backend\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata -o test/backend.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:backend:watch": {
+      "name": "integ:backend:watch",
+      "description": "watch integration test 'backend' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/backend.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:snapshot-all": {
+      "name": "integ:snapshot-all",
+      "description": "update snapshot for all integration tests",
+      "steps": [
+        {
+          "spawn": "integ:backend:snapshot"
         }
       ]
     },
@@ -198,6 +262,9 @@
         },
         {
           "spawn": "eslint"
+        },
+        {
+          "spawn": "integ:backend:assert"
         }
       ]
     },
@@ -230,19 +297,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor"
         },
         {
           "exec": "yarn install --check-files"
