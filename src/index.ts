@@ -25,7 +25,7 @@ export class Streamlink extends Construct {
           workingDirectory: '/build',
           command: [
             'bash', '-c',
-            `pip install --upgrade streamlink lxml -t python/lib/${runtime.name}/site-packages/ && zip -rq /asset-output/layer.zip python`,
+            `pip install --upgrade aws_lambda_types streamlink lxml -t python/lib/${runtime.name}/site-packages/ && zip -rq /asset-output/layer.zip python`,
           ],
           outputType: BundlingOutput.ARCHIVED,
         },

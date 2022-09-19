@@ -1,18 +1,40 @@
 import json
+import re
 import streamlink
+from aws_lambda_types.api_gw import APIGWPayloadV2RequestDict
 
 
-def handler(event, context):
-    print("request: {}".format(json.dumps(event)))
+def handler(event: APIGWPayloadV2RequestDict, _):
 
-    streams = streamlink.streams(
-        "hls://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8"
-    )
+    try:
+        print("REQUEST: {}".format(json.dumps(event)))
 
-    print("url: {}".format(streams["best"].url))
+        match = re.search("^\/live\/(.+)\/([^\/]+)\.(m3u8|mpd)$", event["rawPath"])
 
-    return {
-        "statusCode": 200,
-        "headers": {"Content-Type": "text/plain"},
-        "body": streams["best"].url,
-    }
+        print("CONFIG: {}", match.groups())
+
+        protocol = "dash" if match.group(3) is "mpd" else "hls"
+        streams = streamlink.streams(match.group(1))
+        stream = streams[match.group(2)]
+
+        return {
+            "statusCode": 302,
+            "headers": {
+                "Content-Type": content_type(protocol),
+                "Location": stream.url,
+            },
+        }
+    except Exception as e:
+        print(e)
+        return {
+            "statusCode": 404,
+            "body": "NOT FOUND",
+            "headers": {"Content-Type": "text/html"},
+        }
+
+
+def content_type(protocol: str) -> str:
+    if protocol == "dash":
+        return "video/vnd.mpeg.dash.mpd"
+
+    return "application/vnd.apple.mpegurl"

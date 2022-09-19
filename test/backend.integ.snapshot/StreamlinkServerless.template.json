@@ -5,9 +5,9 @@
    "Properties": {
     "Content": {
      "S3Bucket": {
-      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
-     "S3Key": "035e810ff905ced17e3df984e4901e0ea28104de5ed63acec404d896718940fa.zip"
+     "S3Key": "e38fe7aa79f095cb753eba17125666e8ff7e506c0ae0e7503dca671e2bbf419d.zip"
     },
     "CompatibleRuntimes": [
      "python3.9"
@@ -50,9 +50,9 @@
    "Properties": {
     "Code": {
      "S3Bucket": {
-      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
-     "S3Key": "07e8a9443b39ee653cf089d87ce212d08ff77381692606a954d671a089aaa612.zip"
+     "S3Key": "2879ba020a76cd43e3d115f2ed04443370291a38a20482933a206d2e508fb18b.zip"
     },
     "Role": {
      "Fn::GetAtt": [

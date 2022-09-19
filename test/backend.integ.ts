@@ -5,7 +5,11 @@ import { FunctionUrlAuthType } from 'aws-cdk-lib/aws-lambda';
 import { Streamlink } from '../src';
 
 const app = new cdk.App();
-const stack = new cdk.Stack(app, 'StreamlinkServerless');
+const stack = new cdk.Stack(app, 'StreamlinkServerless', {
+  env: {
+    region: 'eu-west-2',
+  },
+});
 
 const backend = new Streamlink(stack, 'Backend', {});
 
