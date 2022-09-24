@@ -121,7 +121,7 @@
           "exec": "[ -d \"test/backend.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'backend'. Run 'projen integ:backend:deploy' to capture.\" && exit 1)"
         },
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/backend.integ/assert.cdk.out > /dev/null"
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/backend.integ/assert.cdk.out > /dev/null"
         },
         {
           "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/backend.integ.snapshot/ test/.tmp/backend.integ/assert.cdk.out/"
@@ -136,7 +136,7 @@
           "exec": "rm -fr test/.tmp/backend.integ/deploy.cdk.out"
         },
         {
-          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/backend.integ/deploy.cdk.out"
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/backend.integ/deploy.cdk.out"
         },
         {
           "exec": "rm -fr test/backend.integ.snapshot"
@@ -163,7 +163,7 @@
       "description": "update snapshot for integration test \"backend\"",
       "steps": [
         {
-          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata -o test/backend.integ.snapshot > /dev/null"
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/backend.integ.snapshot > /dev/null"
         }
       ]
     },
@@ -172,7 +172,7 @@
       "description": "watch integration test 'backend' (without updating snapshots)",
       "steps": [
         {
-          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/backend.integ/deploy.cdk.out"
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/backend.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/backend.integ/deploy.cdk.out"
         }
       ]
     },
