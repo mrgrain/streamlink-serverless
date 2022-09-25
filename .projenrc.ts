@@ -1,4 +1,5 @@
 import { awscdk, github, JsonPatch } from 'projen';
+import { LogoSystem } from './projenrc/LogoSystem';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -19,6 +20,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-cdk@^2.42.0',
     'aws-cdk-lib@^2.42.0',
     'constructs@^10.0.5',
+    'lodash.merge',
+    '@types/lodash.merge',
   ],
   peerDependencyOptions: {
     pinnedDevDependency: false,
@@ -27,6 +30,37 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.venv/',
     'cdk.out',
   ],
+});
+
+// Logos
+new LogoSystem(project, {
+  dirName: 'images',
+  logo: {
+    width: 145,
+    height: 166,
+    scale: 1.23,
+    dx: 3,
+  },
+  wordmark: {
+    font: {
+      color: '#6F7174',
+    },
+    colorScheme: {
+      dark: {
+        color: '#f0f6fc',
+      },
+      light: {
+        color: '#191919',
+      },
+    },
+    size: {
+      scale: 0.5,
+    },
+    raw: `<text y="100">
+    <tspan x="210" dy="0em" font-size="80px">streamlink</tspan>
+    <tspan x="210" dy="1em" font-size="50px">serverless</tspan>
+</text>`,
+  },
 });
 
 // Ignore python directories

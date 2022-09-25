@@ -20,6 +20,7 @@
     "integ:backend:snapshot": "npx projen integ:backend:snapshot",
     "integ:backend:watch": "npx projen integ:backend:watch",
     "integ:snapshot-all": "npx projen integ:snapshot-all",
+    "logo": "npx projen logo",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
     "package:js": "npx projen package:js",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27",
+    "@types/lodash.merge": "^4.6.7",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
@@ -57,6 +59,7 @@
     "jsii-docgen": "^7.0.93",
     "jsii-pacmak": "^1.68.0",
     "json-schema": "^0.4.0",
+    "lodash.merge": "^4.6.2",
     "npm-check-updates": "^15",
     "projen": "^0.62.18",
     "ts-jest": "^27",

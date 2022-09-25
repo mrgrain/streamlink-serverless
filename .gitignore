@@ -58,3 +58,7 @@ test/backend.integ.snapshot/manifest.json
 test/backend.integ.snapshot/**/manifest.json
 test/backend.integ.snapshot/tree.json
 test/backend.integ.snapshot/**/tree.json
+!/images/wordmark.svg
+!/images/wordmark-dark.svg
+!/images/wordmark-light.svg
+!/images/wordmark-dynamic.svg
