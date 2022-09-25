@@ -1,4 +1,5 @@
 import { awscdk, github, JsonPatch } from 'projen';
+import { Logos } from './projenrc/logos';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -28,6 +29,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'cdk.out',
   ],
 });
+
+// Logos
+new Logos(project);
 
 // Ignore python directories
 project.addPackageIgnore('streamlink/');
