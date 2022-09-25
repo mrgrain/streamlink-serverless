@@ -1,13 +1,13 @@
 import { readFileSync } from 'fs';
 import * as path from 'path';
 import { Component, Project, Task } from 'projen';
-import { FontOptions, SizeOptions, Wordmark } from './Wordmark';
+import { FontOptions, SizeOptions, TranslateOptions, Wordmark } from './Wordmark';
 
 interface LogoSystemOptions {
   readonly dirName?: string;
   readonly logo?: {
     readonly file?: string;
-  } & SizeOptions;
+  } & SizeOptions & Partial<TranslateOptions>;
   readonly wordmark?: {
     readonly text?: string;
     readonly raw?: string;
@@ -43,6 +43,10 @@ export class LogoSystem extends Component {
       logo: {
         ...options.logo,
         content: this.logo(maybeLogoPath),
+        translate: {
+          dx: options.logo?.dx,
+          dy: options.logo?.dy,
+        },
       },
     });
 

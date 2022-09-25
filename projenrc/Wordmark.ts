@@ -22,8 +22,14 @@ export interface SizeOptions {
   scale?: number;
 }
 
+export interface TranslateOptions {
+  dx: number;
+  dy: number;
+}
+
 export interface LogoOptions extends SizeOptions {
   content: string;
+  translate?: TranslateOptions;
 }
 
 interface FullWordmarkOptions {
@@ -52,8 +58,8 @@ export class Wordmark extends Component {
     const expectedLogoScale = this.options.size.height/this.options.logo.height;
     const logoScale = this.options.logo.scale ?? expectedLogoScale;
     const logoTranslate = {
-      x: 0,
-      y: logoScale/expectedLogoScale * -1 * halfHeight + halfHeight,
+      x: 0 + (this.options.logo.translate?.dx ?? 0),
+      y: this.options.logo.translate?.dy ?? (logoScale/expectedLogoScale * -1 * halfHeight + halfHeight),
     };
 
     const wordmark = this.options.raw ?? this.wordmark(this.options.text, {
