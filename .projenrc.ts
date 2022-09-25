@@ -39,7 +39,7 @@ new LogoSystem(project, {
     width: 145,
     height: 166,
     scale: 1.23,
-    dx: 4,
+    dx: 3,
   },
   wordmark: {
     font: {
