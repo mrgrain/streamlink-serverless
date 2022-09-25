@@ -6,6 +6,10 @@
       "type": "build"
     },
     {
+      "name": "@types/lodash.merge",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "version": "^14",
       "type": "build"
@@ -80,6 +84,10 @@
     },
     {
       "name": "json-schema",
+      "type": "build"
+    },
+    {
+      "name": "lodash.merge",
       "type": "build"
     },
     {

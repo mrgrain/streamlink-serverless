@@ -185,8 +185,8 @@
         }
       ]
     },
-    "logos:convert": {
-      "name": "logos:convert",
+    "logo": {
+      "name": "logo",
       "steps": [
         {
           "exec": "find images -iname \"*.svg\" | xargs -L1 -I{} sh -c \"rsvg-convert -h 1024 {} > images/\\$(basename {} .svg).png\""
