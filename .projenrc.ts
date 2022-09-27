@@ -16,6 +16,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
   githubOptions: {
     projenCredentials: github.GithubCredentials.fromApp(),
   },
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ['projen-builder[bot]'],
+  },
   devDeps: [
     'aws-cdk@^2.42.0',
     'aws-cdk-lib@^2.42.0',
