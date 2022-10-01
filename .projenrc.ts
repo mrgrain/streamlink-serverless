@@ -84,6 +84,6 @@ buildWorkflow?.patch(
     'run': 'sudo cp -a $GITHUB_WORKSPACE/. /superchain/work/ && sudo install -d -m 0777 -o superchain -g superchain /superchain/tmp',
   }),
   JsonPatch.replace('/jobs/build/steps/5/with/path', '/superchain/work/.repo.patch'),
-  JsonPatch.replace('/jobs/build/steps/7/with/path', '/superchain/work/dist'),
+  JsonPatch.replace('/jobs/build/steps/8/with/path', '/superchain/work/dist'),
 );
 project.synth();
