@@ -6,9 +6,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Momo Kornher',
   authorAddress: 'mail@moritzkornher.de',
   cdkVersion: '2.1.0',
-  defaultReleaseBranch: 'main',
-  release: false,
-  prerelease: 'pre',
   license: 'MIT',
   name: 'streamlink-serverless',
   description: 'Streamlink as a Service',
@@ -20,6 +17,17 @@ const project = new awscdk.AwsCdkConstructLibrary({
         types: ['feat', 'fix', 'chore', 'docs', 'ci'],
       },
     },
+  },
+  defaultReleaseBranch: 'main',
+  release: true,
+  publishToPypi: {
+    distName: 'streamlink-serverless',
+    module: 'streamlink_serverless',
+  },
+  publishToNuget: {
+    dotNetNamespace: 'StreamlinkServerless',
+    packageId: 'StreamlinkServerless',
+    iconUrl: 'https://raw.githubusercontent.com/mrgrain/streamlink-serverless/main/images/logo.png',
   },
   autoApproveUpgrades: true,
   autoApproveOptions: {
