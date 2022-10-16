@@ -20,11 +20,40 @@ Streamlink Serverless is a CDK construct to run Streamlink as a serverless Lambd
 - [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
 - [Docker](https://docs.docker.com/get-docker/) (to bundle the Streamlink Serverless Lambda Function)
 
+### Installation
+
+Add Streamlink Serverless to a new or existing [AWS CDK app in the language of your choice](https://docs.aws.amazon.com/cdk/v2/guide/hello_world.html):
+
+#### Node.js
+
+```sh
+# npm 
+npm install streamlink-serverless
+# Yarn
+yarn add streamlink-serverless
+# pnpm
+pnpm add streamlink-serverless
+```
+
+#### Other languages
+
+```sh
+# Python
+pip install streamlink-serverless
+
+# Dotnet
+dotnet add package StreamlinkServerless
+```
+
 ### Full example
 
 This example creates a Stack with a Streamlink Serverless backend and publishes the service behind a Function URL. Finally an output returns the service URL for immediate use.
 
 ```ts
+import * as cdk from 'aws-cdk-lib';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import { Streamlink } from 'streamlink-serverless';
+
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'Streamlink');
 
