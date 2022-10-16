@@ -23,7 +23,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   autoApproveUpgrades: true,
   autoApproveOptions: {
-    allowedUsernames: ['projen-builder[bot]'],
+    allowedUsernames: [
+      'projen-builder[bot]', // Bot account for upgrade PRs
+      'mrgrain', // Auto-approve PRs of main maintainer
+    ],
   },
   devDeps: [
     'aws-cdk@^2.42.0',
