@@ -11,7 +11,7 @@ export interface StreamlinkProps {
 export class Streamlink extends Construct {
   public readonly function: lambda.Function;
 
-  public constructor(scope: Construct, id: string, _props: StreamlinkProps) {
+  public constructor(scope: Construct, id: string, _props: StreamlinkProps = {}) {
     super(scope, id);
 
     const runtime = Runtime.PYTHON_3_9;
