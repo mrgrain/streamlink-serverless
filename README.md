@@ -60,7 +60,7 @@ const stack = new cdk.Stack(app, 'Streamlink');
 const streamlink = new Streamlink(stack, 'Backend');
 
 const endpoint = new lambda.FunctionUrl(stack, 'Endpoint', {
-  function: backend.function,
+  function: streamlink.function,
   authType: lambda.FunctionUrlAuthType.NONE,
 });
 
