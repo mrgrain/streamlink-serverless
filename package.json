@@ -59,7 +59,7 @@
     "jsii-pacmak": "^1.69.0",
     "json-schema": "^0.4.0",
     "lodash.merge": "^4.6.2",
-    "npm-check-updates": "^16",
+    "npm-check-updates": "^15",
     "projen": "^0.63.22",
     "ts-jest": "^27",
     "ts-node": "^10.9.1",
