@@ -9,7 +9,7 @@
 ```typescript
 import { Streamlink } from 'streamlink-serverless'
 
-new Streamlink(scope: Construct, id: string, _props: StreamlinkProps)
+new Streamlink(scope: Construct, id: string, _props?: StreamlinkProps)
 ```
 
 | **Name** | **Type** | **Description** |
@@ -32,7 +32,7 @@ new Streamlink(scope: Construct, id: string, _props: StreamlinkProps)
 
 ---
 
-##### `_props`<sup>Required</sup> <a name="_props" id="streamlink-serverless.Streamlink.Initializer.parameter._props"></a>
+##### `_props`<sup>Optional</sup> <a name="_props" id="streamlink-serverless.Streamlink.Initializer.parameter._props"></a>
 
 - *Type:* <a href="#streamlink-serverless.StreamlinkProps">StreamlinkProps</a>
 
