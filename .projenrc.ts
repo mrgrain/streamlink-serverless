@@ -15,6 +15,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/mrgrain/streamlink-serverless.git',
   githubOptions: {
     projenCredentials: github.GithubCredentials.fromApp(),
+    pullRequestLintOptions: {
+      semanticTitleOptions: {
+        types: ['feat', 'fix', 'chore', 'docs', 'ci'],
+      },
+    },
   },
   autoApproveUpgrades: true,
   autoApproveOptions: {
