@@ -15,15 +15,15 @@ jobs:
       latest_commit: ${{ steps.git_remote.outputs.latest_commit }}
     env:
       CI: "true"
-      TMPDIR: /superchain/tmp
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Prepare Workspace
-        working-directory: /superchain
-        run: sudo cp -a $GITHUB_WORKSPACE/. /superchain/work/ && sudo install -d -m 0777 -o superchain -g superchain /superchain/tmp
       - name: Set git identity
         run: |-
           git config user.name "github-actions"
@@ -44,15 +44,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: /superchain/work/dist
-    container:
-      image: jsii/superchain:1-buster-slim-node14
-      options: --group-add 123
-      volumes:
-        - /superchain:/superchain
-    defaults:
-      run:
-        working-directory: /superchain/work
+          path: dist
   release_github:
     name: Publish to GitHub Releases
     needs: release

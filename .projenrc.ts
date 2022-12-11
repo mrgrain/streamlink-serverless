@@ -1,6 +1,6 @@
 import { awscdk, github } from 'projen';
 import { LogoSystem } from './projenrc/LogoSystem';
-import { WorkflowDockerPatch } from './projenrc/WorkflowDockerPatch';
+import { WorkflowNoDockerPatch } from './projenrc/WorkflowNoDockerPatch';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -89,8 +89,8 @@ project.addPackageIgnore('streamlink/');
 project.addPackageIgnore('cdk.out');
 
 // Fix Docker on GitHub
-new WorkflowDockerPatch(project, { workflow: 'build' });
-new WorkflowDockerPatch(project, { workflow: 'release' });
+new WorkflowNoDockerPatch(project, { workflow: 'build' });
+new WorkflowNoDockerPatch(project, { workflow: 'release' });
 
 // jsii rosetta
 project.package.addField('jsiiRosetta', {
