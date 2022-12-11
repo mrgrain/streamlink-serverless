@@ -13,16 +13,12 @@ jobs:
       self_mutation_happened: ${{ steps.self_mutation.outputs.self_mutation_happened }}
     env:
       CI: "true"
-      TMPDIR: /superchain/tmp
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Prepare Workspace
-        working-directory: /superchain
-        run: sudo cp -a $GITHUB_WORKSPACE/. /superchain/work/ && sudo install -d -m 0777 -o superchain -g superchain /superchain/tmp
       - name: Install dependencies
         run: yarn install --check-files
       - name: build
@@ -37,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: .repo.patch
-          path: /superchain/work/.repo.patch
+          path: .repo.patch
       - name: Fail build on mutation
         if: steps.self_mutation.outputs.self_mutation_happened
         run: |-
@@ -51,15 +47,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: /superchain/work/dist
-    container:
-      image: jsii/superchain:1-buster-slim-node14
-      options: --group-add 123
-      volumes:
-        - /superchain:/superchain
-    defaults:
-      run:
-        working-directory: /superchain/work
+          path: dist
   self-mutation:
     needs: build
     runs-on: ubuntu-latest
