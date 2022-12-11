@@ -1,4 +1,5 @@
-import { JsonPatch, Project } from 'projen';
+import { JsonPatch } from 'projen';
+import { NodeProject } from 'projen/lib/javascript';
 
 export interface WorkflowDockerPatchOptions {
   /**
@@ -13,14 +14,19 @@ export interface WorkflowDockerPatchOptions {
 }
 
 export class WorkflowNoDockerPatch {
-  public constructor(project: Project, options: WorkflowDockerPatchOptions) {
+  public constructor(project: NodeProject, options: WorkflowDockerPatchOptions) {
     const {
       workflow,
       workflowName = options.workflow,
     } = options;
 
     project.tryFindObjectFile(`.github/workflows/${workflow}.yml`)?.patch(
-      JsonPatch.remove( `/jobs/${workflowName}/container`),
+      JsonPatch.add(`/jobs/${workflowName}/steps/`, {
+        name: 'Setup Node.js',
+        uses: 'actions/setup-node@v3',
+        with: { 'node-version': project.minNodeVersion ?? '14.x' },
+      }),
+      JsonPatch.remove(`/jobs/${workflowName}/container`),
     );
   }
 }
