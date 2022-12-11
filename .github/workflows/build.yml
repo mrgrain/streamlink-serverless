@@ -54,7 +54,7 @@ jobs:
           path: /superchain/work/dist
     container:
       image: jsii/superchain:1-buster-slim-node14
-      options: --group-add 121
+      options: --group-add 123
       volumes:
         - /superchain:/superchain
     defaults:
