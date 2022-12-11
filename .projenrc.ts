@@ -92,4 +92,13 @@ project.addPackageIgnore('cdk.out');
 new WorkflowDockerPatch(project, { workflow: 'build' });
 new WorkflowDockerPatch(project, { workflow: 'release' });
 
+// jsii rosetta
+project.package.addField('jsiiRosetta', {
+  strict: true,
+});
+const rosetta = project.addTask('rosetta', { exec: 'jsii-rosetta extract' });
+project.tasks.tryFind('post-compile')?.prependSpawn(rosetta);
+project.addGitIgnore('.jsii.tabl.json');
+project.addPackageIgnore('.jsii.tabl.json');
+
 project.synth();

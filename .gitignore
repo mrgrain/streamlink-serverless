@@ -66,3 +66,4 @@ test/backend.integ.snapshot/**/tree.json
 !/images/wordmark-dark.svg
 !/images/wordmark-light.svg
 !/images/wordmark-dynamic.svg
+.jsii.tabl.json

@@ -266,6 +266,9 @@
       "description": "Runs after successful compilation",
       "steps": [
         {
+          "spawn": "rosetta"
+        },
+        {
           "spawn": "docgen"
         }
       ]
@@ -299,6 +302,14 @@
         },
         {
           "exec": "git diff --ignore-space-at-eol --exit-code"
+        }
+      ]
+    },
+    "rosetta": {
+      "name": "rosetta",
+      "steps": [
+        {
+          "exec": "jsii-rosetta extract"
         }
       ]
     },

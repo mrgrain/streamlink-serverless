@@ -26,3 +26,4 @@ test/.tmp
 test/backend.integ.snapshot
 streamlink/
 cdk.out
+.jsii.tabl.json

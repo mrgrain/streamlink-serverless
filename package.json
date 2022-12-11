@@ -31,6 +31,7 @@
     "post-upgrade": "npx projen post-upgrade",
     "pre-compile": "npx projen pre-compile",
     "release": "npx projen release",
+    "rosetta": "npx projen rosetta",
     "test": "npx projen test",
     "test:watch": "npx projen test:watch",
     "unbump": "npx projen unbump",
@@ -140,6 +141,9 @@
       "outDir": "lib",
       "rootDir": "src"
     }
+  },
+  "jsiiRosetta": {
+    "strict": true
   },
   "resolutions": {
     "@types/prettier": "2.6.0",

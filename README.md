@@ -50,17 +50,13 @@ dotnet add package StreamlinkServerless
 This example creates a Stack with a Streamlink Serverless backend and publishes the service behind a Function URL. Finally an output returns the service URL for immediate use.
 
 ```ts
-import * as cdk from 'aws-cdk-lib';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import { Streamlink } from 'streamlink-serverless';
-
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'Streamlink');
 
 const streamlink = new Streamlink(stack, 'Backend');
 
 const endpoint = new lambda.FunctionUrl(stack, 'Endpoint', {
-  function: backend.function,
+  function: streamlink.function,
   authType: lambda.FunctionUrlAuthType.NONE,
 });
 
