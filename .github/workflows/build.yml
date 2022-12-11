@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: ls -ahsl /var/run/docker.sock
+      - run: id -g docker
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -19,7 +20,6 @@ jobs:
       CI: "true"
       TMPDIR: /superchain/tmp
     steps:
-      - run: ls -ahsl /var/run/docker.sock
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -59,7 +59,7 @@ jobs:
           path: /superchain/work/dist
     container:
       image: jsii/superchain:1-buster-slim-node14
-      options: --group-add 122
+      options: --group-add docker
       volumes:
         - /superchain:/superchain
     defaults:
