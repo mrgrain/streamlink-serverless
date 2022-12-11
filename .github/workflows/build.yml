@@ -5,6 +5,10 @@ on:
   pull_request: {}
   workflow_dispatch: {}
 jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls -ahsl /var/run/docker.sock
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -15,6 +19,7 @@ jobs:
       CI: "true"
       TMPDIR: /superchain/tmp
     steps:
+      - run: ls -ahsl /var/run/docker.sock
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -54,7 +59,7 @@ jobs:
           path: /superchain/work/dist
     container:
       image: jsii/superchain:1-buster-slim-node14
-      options: --group-add 121
+      options: --group-add 122
       volumes:
         - /superchain:/superchain
     defaults:

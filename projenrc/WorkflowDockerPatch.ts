@@ -37,7 +37,7 @@ export class WorkflowDockerPatch {
     const {
       workflow,
       workflowName = options.workflow,
-      dockerGroup = '121',
+      dockerGroup = '122',
       volumePath = '/superchain',
     } = options;
     const workDir = `${volumePath}/${options.workDir ?? 'work'}`;
