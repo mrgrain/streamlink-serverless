@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: ls -ahsl /var/run/docker.sock
-      - run: id -g docker
+      - run: id
   build:
     runs-on: ubuntu-latest
     permissions:
