@@ -1,4 +1,4 @@
-import { awscdk, github } from 'projen';
+import { awscdk, release, github } from 'projen';
 import { LogoSystem } from './projenrc/LogoSystem';
 import { WorkflowNoDockerPatch } from './projenrc/WorkflowNoDockerPatch';
 
@@ -21,6 +21,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   defaultReleaseBranch: 'main',
   release: true,
+  releaseTrigger: release.ReleaseTrigger.scheduled({
+    schedule: '0 5 * * 1',
+  }),
   publishToPypi: {
     distName: 'streamlink-serverless',
     module: 'streamlink_serverless',
