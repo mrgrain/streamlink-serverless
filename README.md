@@ -70,20 +70,26 @@ app.synth();
 ## Usage
 
 Once deployed, you can use your Streamlink Serverless service like this:
-`https://example.com/live/youtube.com/c/NASA.m3u8`
+`https://example.com/live/youtube.com/@NASA/best.m3u8`
 
-### URL format
+### URL formats
 
-`https://<endpoint>/live/<url>/<stream>.<type>`
+`https://<endpoint>/live/<url>`\
+Simply put the stream URL behind your endpoint.
 
 - `<endpoint>`\
   The endpoint URL of the Streamlink Serverless deployment.
 - `<url>`\
   A URL to attempt to extract streams from.
-  Usually, the protocol of http(s) URLs can be omitted (https://).
+  Usually, the protocol of http(s) URLs can be omitted.
+
+`https://<endpoint>/live/<url>/<stream>.<type>`\
+This format allows selecting a specific stream quality and format.
+
 - `<stream>`\
   Stream to play.
   Use `best` or `worst` for selecting the highest or lowest available quality.
+  Optional.
 - `<type>`\
   Type of the returned stream. Needed by some players for correct playback.
   Use `m3u8` for HLS streams or `mpd` for Dash streams.
