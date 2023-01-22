@@ -87,8 +87,7 @@ new LogoSystem(project, {
   },
 });
 
-// Ignore python directories
-project.addPackageIgnore('streamlink/');
+// Ignore cdk directories
 project.addPackageIgnore('cdk.out');
 
 // Fix Docker on GitHub
