@@ -1,15 +1,15 @@
 {
   "version": "29.0.0",
   "files": {
-    "f6191b25ca59c148725bb21616495d59f660596ba6e24a6261d6adc5144078ba": {
+    "8881603adcc1e3981c62fc5aa9ab6551fa1b7cf7be0942eb312200a348aadc43": {
       "source": {
-        "path": "asset.f6191b25ca59c148725bb21616495d59f660596ba6e24a6261d6adc5144078ba.zip",
+        "path": "asset.8881603adcc1e3981c62fc5aa9ab6551fa1b7cf7be0942eb312200a348aadc43.zip",
         "packaging": "file"
       },
       "destinations": {
         "current_account-eu-west-2": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2",
-          "objectKey": "f6191b25ca59c148725bb21616495d59f660596ba6e24a6261d6adc5144078ba.zip",
+          "objectKey": "8881603adcc1e3981c62fc5aa9ab6551fa1b7cf7be0942eb312200a348aadc43.zip",
           "region": "eu-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-west-2"
         }
@@ -29,7 +29,7 @@
         }
       }
     },
-    "993c698649d7e07e8012345e6fef5458385b5d1fbc27f2d7af19dcecc82bee1f": {
+    "fdad5b016e9f23930bab8382c5d63ae05f3d0b6ed199ee81be817bb96d1b50a9": {
       "source": {
         "path": "StreamlinkServerless.template.json",
         "packaging": "file"
@@ -37,7 +37,7 @@
       "destinations": {
         "current_account-eu-west-2": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2",
-          "objectKey": "993c698649d7e07e8012345e6fef5458385b5d1fbc27f2d7af19dcecc82bee1f.json",
+          "objectKey": "fdad5b016e9f23930bab8382c5d63ae05f3d0b6ed199ee81be817bb96d1b50a9.json",
           "region": "eu-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-west-2"
         }
