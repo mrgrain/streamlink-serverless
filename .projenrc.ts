@@ -5,7 +5,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
   author: 'Momo Kornher',
   authorAddress: 'mail@moritzkornher.de',
-  cdkVersion: '2.1.0',
+  cdkVersion: '2.63.0-rc.0',
   license: 'MIT',
   name: 'streamlink-serverless',
   description: 'Streamlink as a Service',
