@@ -1,6 +1,6 @@
 import { join } from 'path';
 import * as cdk from 'aws-cdk-lib';
-import { BundlingOutput, DockerImage } from 'aws-cdk-lib';
+import { BundlingFileAccess, BundlingOutput, DockerImage } from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
@@ -28,6 +28,7 @@ export class Streamlink extends Construct {
             `pip install --upgrade aws_lambda_types streamlink lxml -t python/lib/${runtime.name}/site-packages/ && zip -rq /asset-output/layer.zip python`,
           ],
           outputType: BundlingOutput.ARCHIVED,
+          bundlingFileAccess: BundlingFileAccess.VOLUME_COPY,
         },
       }),
     });
