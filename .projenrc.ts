@@ -41,7 +41,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   devDeps: [
     'aws-cdk@^2.42.0',
-    'aws-cdk-lib@^2.42.0',
+    'aws-cdk-lib@./aws-cdk-lib.tgz',
     'constructs@^10.0.5',
     'lodash.merge',
     '@types/lodash.merge',
