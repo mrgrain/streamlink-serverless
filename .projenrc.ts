@@ -105,5 +105,6 @@ const rosetta = project.addTask('rosetta', { exec: 'jsii-rosetta extract' });
 project.tasks.tryFind('post-compile')?.prependSpawn(rosetta);
 project.addGitIgnore('.jsii.tabl.json');
 project.addPackageIgnore('.jsii.tabl.json');
+project.gitignore.removePatterns('*.tgz');
 
 project.synth();
