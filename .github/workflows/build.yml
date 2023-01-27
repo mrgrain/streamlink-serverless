@@ -14,10 +14,8 @@ jobs:
     env:
       CI: "true"
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
+      - name: Change permissions on /var/run/docker.sock
+        run: sudo chown superchain /var/run/docker.sock
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -52,6 +50,8 @@ jobs:
         with:
           name: build-artifact
           path: dist
+    container:
+      image: jsii/superchain:1-buster-slim-node14
   self-mutation:
     needs: build
     runs-on: ubuntu-latest

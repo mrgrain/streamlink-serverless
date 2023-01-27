@@ -15,10 +15,6 @@ jobs:
     env:
       CI: "true"
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -44,6 +40,8 @@ jobs:
         with:
           name: build-artifact
           path: dist
+    container:
+      image: jsii/superchain:1-buster-slim-node14
   release_github:
     name: Publish to GitHub Releases
     needs: release

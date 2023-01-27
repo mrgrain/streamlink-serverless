@@ -1,6 +1,5 @@
-import { awscdk, release, github } from 'projen';
+import { awscdk, release, github, JsonPatch } from 'projen';
 import { LogoSystem } from './projenrc/LogoSystem';
-import { WorkflowNoDockerPatch } from './projenrc/WorkflowNoDockerPatch';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -91,8 +90,12 @@ new LogoSystem(project, {
 project.addPackageIgnore('cdk.out');
 
 // Fix Docker on GitHub
-new WorkflowNoDockerPatch(project, { workflow: 'build' });
-new WorkflowNoDockerPatch(project, { workflow: 'release' });
+project.tryFindObjectFile('.github/workflows/build.yml')?.patch(
+  JsonPatch.add('/jobs/build/steps/', {
+    name: 'Change permissions on /var/run/docker.sock',
+    run: 'sudo chown superchain /var/run/docker.sock',
+  }),
+);
 
 // jsii rosetta
 project.package.addField('jsiiRosetta', {
