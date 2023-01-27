@@ -106,5 +106,6 @@ project.tasks.tryFind('post-compile')?.prependSpawn(rosetta);
 project.addGitIgnore('.jsii.tabl.json');
 project.addPackageIgnore('.jsii.tabl.json');
 project.gitignore.removePatterns('*.tgz');
+project.gitattributes.addAttributes('*.tgz filter=lfs diff=lfs merge=lfs -text');
 
 project.synth();
