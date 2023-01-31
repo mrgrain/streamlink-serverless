@@ -83,10 +83,6 @@
       "type": "build"
     },
     {
-      "name": "json-schema",
-      "type": "build"
-    },
-    {
       "name": "lodash.merge",
       "type": "build"
     },
