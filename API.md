@@ -138,6 +138,23 @@ import { StreamlinkProps } from 'streamlink-serverless'
 const streamlinkProps: StreamlinkProps = { ... }
 ```
 
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#streamlink-serverless.StreamlinkProps.property.test">test</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `test`<sup>Optional</sup> <a name="test" id="streamlink-serverless.StreamlinkProps.property.test"></a>
+
+```typescript
+public readonly test: string;
+```
+
+- *Type:* string
+
+---
 
 
 
