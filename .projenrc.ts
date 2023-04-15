@@ -56,7 +56,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
 // Logos
 new logo.LogoSystem(project, {
-  dirName: 'images',
   logo: {
     width: 145,
     height: 166,
