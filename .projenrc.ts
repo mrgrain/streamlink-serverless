@@ -1,5 +1,5 @@
+import { logo } from 'mrpj';
 import { awscdk, release, github } from 'projen';
-import { LogoSystem } from './projenrc/LogoSystem';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -55,7 +55,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 // Logos
-new LogoSystem(project, {
+new logo.LogoSystem(project, {
   dirName: 'images',
   logo: {
     width: 145,
