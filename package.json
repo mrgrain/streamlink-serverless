@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27",
-    "@types/lodash.merge": "ts3.9",
+    "@types/lodash": "ts3.9",
     "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",

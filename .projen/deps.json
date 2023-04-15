@@ -6,7 +6,7 @@
       "type": "build"
     },
     {
-      "name": "@types/lodash.merge",
+      "name": "@types/lodash",
       "version": "ts3.9",
       "type": "build"
     },
