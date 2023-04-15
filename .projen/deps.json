@@ -6,11 +6,6 @@
       "type": "build"
     },
     {
-      "name": "@types/lodash",
-      "version": "ts3.9",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "^16",
       "type": "build"
@@ -85,7 +80,7 @@
       "type": "build"
     },
     {
-      "name": "lodash.merge",
+      "name": "mrpj",
       "type": "build"
     },
     {

@@ -1,6 +1,5 @@
 import { awscdk, release, github } from 'projen';
 import { LogoSystem } from './projenrc/LogoSystem';
-import { WorkflowNoDockerPatch } from './projenrc/WorkflowNoDockerPatch';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -44,8 +43,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-cdk@^2.42.0',
     'aws-cdk-lib@^2.42.0',
     'constructs@^10.0.5',
-    'lodash.merge',
-    '@types/lodash@ts3.9',
+    'mrpj',
   ],
   peerDependencyOptions: {
     pinnedDevDependency: false,
@@ -90,9 +88,6 @@ new LogoSystem(project, {
 // Ignore cdk directories
 project.addPackageIgnore('cdk.out');
 
-// Fix Docker on GitHub
-new WorkflowNoDockerPatch(project, { workflow: 'build' });
-new WorkflowNoDockerPatch(project, { workflow: 'release' });
 
 // jsii rosetta
 project.package.addField('jsiiRosetta', {
