@@ -62,7 +62,7 @@
     "jsii-diff": "^1.80.0",
     "jsii-docgen": "^7.1.46",
     "jsii-pacmak": "^1.80.0",
-    "mrpj": "^0.0.8",
+    "mrpj": "^0.0.11",
     "npm-check-updates": "^16",
     "projen": "^0.71.9",
     "standard-version": "^9",
