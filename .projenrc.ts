@@ -1,4 +1,4 @@
-import { logo } from 'mrpj';
+import { Logo, Wordmark } from 'mrpj/lib/logo';
 import { awscdk, release, github } from 'projen';
 
 const project = new awscdk.AwsCdkConstructLibrary({
@@ -55,33 +55,24 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 // Logos
-new logo.LogoSystem(project, {
-  logo: {
-    width: 145,
-    height: 166,
-    scale: 1.23,
+const logo = Logo.fromFile('images/logo.svg', {
+  width: 145,
+  height: 166,
+});
+logo.synth(project);
+new Wordmark(project, {
+  logo,
+  logoScale: 1.23,
+  logoPosition: {
     dx: 3,
   },
-  wordmark: {
-    font: {
-      color: '#6F7174',
-    },
-    colorScheme: {
-      dark: {
-        color: '#f0f6fc',
-      },
-      light: {
-        color: '#191919',
-      },
-    },
-    size: {
-      scale: 0.5,
-    },
-    raw: `<text y="100">
+  size: {
+    scale: 0.5,
+  },
+  raw: `<text y="100">
     <tspan x="210" dy="0em" font-size="80px">streamlink</tspan>
     <tspan x="210" dy="1em" font-size="50px">serverless</tspan>
 </text>`,
-  },
 });
 
 // Ignore cdk directories
