@@ -1,5 +1,5 @@
 {
-  "version": "31.0.0",
+  "version": "33.0.0",
   "files": {
     "f6191b25ca59c148725bb21616495d59f660596ba6e24a6261d6adc5144078ba": {
       "source": {
@@ -29,7 +29,7 @@
         }
       }
     },
-    "993c698649d7e07e8012345e6fef5458385b5d1fbc27f2d7af19dcecc82bee1f": {
+    "48606c85e86ee950d3cc1491aa404ac914616b57dca2cd77d8f7d2608a6877eb": {
       "source": {
         "path": "StreamlinkServerless.template.json",
         "packaging": "file"
@@ -37,7 +37,7 @@
       "destinations": {
         "current_account-eu-west-2": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2",
-          "objectKey": "993c698649d7e07e8012345e6fef5458385b5d1fbc27f2d7af19dcecc82bee1f.json",
+          "objectKey": "48606c85e86ee950d3cc1491aa404ac914616b57dca2cd77d8f7d2608a6877eb.json",
           "region": "eu-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-west-2"
         }

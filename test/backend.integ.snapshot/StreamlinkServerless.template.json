@@ -3,15 +3,15 @@
   "BackendLayer8D47AE69": {
    "Type": "AWS::Lambda::LayerVersion",
    "Properties": {
+    "CompatibleRuntimes": [
+     "python3.9"
+    ],
     "Content": {
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
      "S3Key": "f6191b25ca59c148725bb21616495d59f660596ba6e24a6261d6adc5144078ba.zip"
-    },
-    "CompatibleRuntimes": [
-     "python3.9"
-    ]
+    }
    }
   },
   "BackendServiceRole02B059A1": {
@@ -54,12 +54,6 @@
      },
      "S3Key": "1d3a0f69575846562ba1d82d5ffe1e2a0bdb43c24151aecd20072ee35bff47c6.zip"
     },
-    "Role": {
-     "Fn::GetAtt": [
-      "BackendServiceRole02B059A1",
-      "Arn"
-     ]
-    },
     "Handler": "app.handler",
     "Layers": [
      {
@@ -67,6 +61,12 @@
      }
     ],
     "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "BackendServiceRole02B059A1",
+      "Arn"
+     ]
+    },
     "Runtime": "python3.9",
     "Timeout": 5
    },
@@ -84,8 +84,8 @@
       "Arn"
      ]
     },
-    "Principal": "*",
-    "FunctionUrlAuthType": "NONE"
+    "FunctionUrlAuthType": "NONE",
+    "Principal": "*"
    }
   },
   "EndpointEEF1FD8F": {
